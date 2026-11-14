@@ -6,15 +6,16 @@ function copyStaticAssetsPlugin(): Plugin {
   return {
     name: 'copy-static-assets',
     closeBundle() {
-      const distDir = path.resolve(__dirname, 'dist');
+      const rootDir = import.meta.dirname ?? process.cwd();
+      const distDir = path.resolve(rootDir, 'dist');
       if (!fs.existsSync(distDir)) return;
 
-      const appJsSrc = path.resolve(__dirname, 'app.js');
+      const appJsSrc = path.resolve(rootDir, 'app.js');
       if (fs.existsSync(appJsSrc)) {
         fs.copyFileSync(appJsSrc, path.join(distDir, 'app.js'));
       }
 
-      const imagesSrc = path.resolve(__dirname, 'images');
+      const imagesSrc = path.resolve(rootDir, 'images');
       const imagesDest = path.join(distDir, 'images');
       if (fs.existsSync(imagesSrc)) {
         fs.mkdirSync(imagesDest, { recursive: true });
@@ -31,6 +32,8 @@ export default defineConfig(() => {
     base: './',
     plugins: [copyStaticAssetsPlugin()],
     server: {
+      port: 3000,
+      host: '0.0.0.0',
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },

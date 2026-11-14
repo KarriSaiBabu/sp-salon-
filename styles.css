@@ -32,6 +32,7 @@ html {
   color: var(--ink-primary);
   background-color: var(--bg-canvas);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 body {
@@ -39,6 +40,7 @@ body {
   background-color: var(--bg-canvas);
   color: var(--ink-primary);
   line-height: 1.5;
+  overflow-x: clip;
 }
 
 h1,
@@ -2204,6 +2206,90 @@ textarea:focus-visible {
 
 .credit-links a:hover {
   color: var(--ink-primary);
+}
+
+@media (max-width: 639px) {
+  .tab-btn,
+  .service-toggle-btn,
+  .picker-service-btn,
+  .slot-btn,
+  .date-btn,
+  .gallery-expand-btn {
+    min-height: 44px;
+  }
+
+  .hero-slider {
+    min-height: 390px;
+  }
+
+  .hero-slider-overlay {
+    padding-top: 56px;
+  }
+
+  .slide-title {
+    font-size: 1.35rem;
+  }
+
+  .service-item.selected {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .gallery-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lightbox-modal {
+    padding-top: 64px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-cta-row .btn,
+  .visit-actions .btn,
+  .receipt-actions .btn {
+    width: 100%;
+  }
+
+  .service-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-toggle-btn {
+    align-self: flex-start;
+    margin-left: 26px;
+  }
+
+  .gallery-thumbs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 379px) {
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .booking-left-card,
+  .booking-right-card {
+    padding: 28px;
+  }
+
+  .gallery-thumbs {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

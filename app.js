@@ -327,7 +327,7 @@
   // Application State
   const upcomingDays = getUpcomingDays(14);
   const state = {
-    selectedServiceIds: ['haircut'],
+    selectedServiceIds: [],
     serviceCategory: 'All',
     heroIndex: 0,
     heroPaused: false,
@@ -915,10 +915,11 @@
     const totalDuration = selected.reduce((sum, s) => sum + s.durationMins, 0);
     const activeDay = upcomingDays.find((d) => d.isoDate === state.selectedIsoDate) || upcomingDays[0];
 
+    const emptyLabel = state.bookingMode === 'enquiry' ? 'General Enquiry' : 'None selected';
     let html = `
       <div class="summary-row">
         <span>Selected Services</span>
-        <span class="summary-strong tabular-nums">${selected.length > 0 ? `${selected.length} chosen` : 'General Enquiry'}</span>
+        <span class="summary-strong tabular-nums">${selected.length > 0 ? `${selected.length} chosen` : emptyLabel}</span>
       </div>
     `;
 
